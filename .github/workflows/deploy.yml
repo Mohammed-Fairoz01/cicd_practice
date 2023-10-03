@@ -27,3 +27,4 @@ jobs:
     -
      name: Deploy code to AWS instance
      run:
+        scp -i path/to/your/key.pem -r ./your-code/ ec2-user@your-instance-ip:/path/to/deploy/
