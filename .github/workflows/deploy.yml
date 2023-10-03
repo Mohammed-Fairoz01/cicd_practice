@@ -1,0 +1,29 @@
+name: Deploy to AWS window Instance
+
+on: 
+    push:
+        branches: [ "main" ]
+            
+
+jobs:
+ deploy:
+  runs-on: windows-latest
+
+
+  steps:
+    -
+
+     name : Checkout code
+     uses: actions/checkout@v2
+
+    - 
+     name: set up AWS CLI
+     uses: aws-actions/configure-aws-credential@v1
+     with:
+      aws-access-key-id: AKIAV74T6OGMMJOL4YSF
+      aws-secret-access-key: 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\
+      aws-region: us-north-1
+
+    -
+     name: Deploy code to AWS instance
+     run: |
