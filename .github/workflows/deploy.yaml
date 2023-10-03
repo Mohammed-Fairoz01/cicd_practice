@@ -22,10 +22,3 @@ jobs:
 
       - name: Deploy code to AWS instance
         run: |
-          # Add your deployment commands here using AWS CLI or other methods suitable for Windows
-          # Example: Use AWS CLI to copy files to an AWS S3 bucket
-          aws s3 cp ./your-code s3://your-bucket-name/ --recursive
-
-          # Optionally, you can also use remote PowerShell or other methods to execute scripts on the Windows instance
-
-          # Add more steps to complete your deployment process
