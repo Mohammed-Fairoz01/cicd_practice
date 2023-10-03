@@ -26,4 +26,4 @@ jobs:
 
     -
      name: Deploy code to AWS instance
-     run: |
+     run:
