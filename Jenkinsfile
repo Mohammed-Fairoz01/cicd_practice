@@ -1,3 +1,5 @@
+def qgFail
+def serviceTraceName
 pipeline {
     agent any
 
