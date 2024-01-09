@@ -1,8 +1,26 @@
-# sample_automation_script.py
+pipeline {
+    agent any
 
-def main():
-    print("Hello from Jenkins automation script!")
-    # Add your automation logic here
+    stages {
+        stage('Build') {
+            steps {
+                echo 'Building...'
+                // Add your build steps here
+            }
+        }
 
-if __name__ == "__main__":
-    main()
+        stage('Test') {
+            steps {
+                echo 'Testing...'
+                // Add your test steps here
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                echo 'Deploying...'
+                // Add your deployment steps here
+            }
+        }
+    }
+}
