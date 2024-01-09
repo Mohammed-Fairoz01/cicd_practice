@@ -22,5 +22,13 @@ pipeline {
                 // Add your deployment steps here
             }
         }
+         stage('Sonar Analysis') {
+            // Sonar Scan
+            sonarAnalyze (serviceTraceName)
+          }
+          stage("Sonar Quality Gate Check"){
+            // Sonar qaulity gating, fails build if sonar gate fail
+            sonarQg (serviceTraceName, qgFail)
+          }  
     }
 }
