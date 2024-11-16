@@ -23,7 +23,7 @@ jobs:
         
       - name: Compare secret value
         run: |
-          if [[ "${GITHUB_REF}" != "refs/heads/main" || "${{ github.event.inputs.secret_input }}" != "${{ secrets.USER_INPUT }}" ]]; then
+          if [[ "${{ github.event.inputs.secret_input }}" != "${{ secrets.USER_INPUT }}" ]]; then
             echo "Secret values do not match. Exiting..."
             exit 1
           fi
