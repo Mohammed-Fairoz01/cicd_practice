@@ -7,12 +7,9 @@ on:
       - stage
   workflow_dispatch:
     inputs:
-      branch_name:
-        description: 'Specify the branch to deploy from'
-        required: true
       secret_input:
         description: 'Provide the secret value'
-        required: true 
+        required: true
 env:
   REPO_NAME: persimmon-api-stage
  
