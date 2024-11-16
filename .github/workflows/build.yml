@@ -3,7 +3,6 @@ name: persimmon-api-cloud-run
 on:
   push:
     branches:
-      - main
       - stage
   workflow_dispatch:
     inputs:
@@ -24,27 +23,8 @@ jobs:
       - name: Compare secret value
         if: github.ref == 'refs/heads/main'
         run: |
-          if [[ "${{ github.event.inputs.secret_input }}" != "${{ secrets.USER_INPUT }}" ]]; then
+          if [[ "${GITHUB_REF}" == "refs/heads/main" && "${{ github.event.inputs.secret_input }}" != "${{ secrets.USER_INPUT }}" ]]; then
             echo "Secret values do not match. Exiting..."
             exit 1
           fi
           echo "Secret values match, proceeding with the job..."
-      - id: "auth"
-        uses: "google-github-actions/auth@v2"
-        with:
-          credentials_json: "${{ secrets.CLOUD_RUN_SERVICE_ACCOUNT }}"
- 
-      - name: Set up Cloud SDK
-        uses: google-github-actions/setup-gcloud@v2
- 
-      - name: Enable component beta
-        run: gcloud components install beta
- 
-      - name: Use gcloud CLI
-        run: gcloud info
- 
-      - name: What is gcloud version?
-        run: gcloud --version
- 
-      - name: Authorize Docker push
-        run: gcloud auth configure-docker
