@@ -27,3 +27,5 @@ jobs:
             exit 1
           fi
           echo "Secret values match, proceeding with the job..."
+      - name: Compare secret matched
+        run: echo "Secret values match, proceeding with the job..."
