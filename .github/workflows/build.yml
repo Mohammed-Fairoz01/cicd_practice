@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - stage
   workflow_dispatch:
     inputs:
       branch_name:
@@ -23,7 +24,15 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
- 
+        
+      - name: Compare secret value
+        if: github.ref == 'refs/heads/main'
+        run: |
+          if [[ "${{ github.event.inputs.secret_input }}" != "${{ secrets.USER_INPUT }}" ]]; then
+            echo "Secret values do not match. Exiting..."
+            exit 1
+          fi
+          echo "Secret values match, proceeding with the job..."
       - id: "auth"
         uses: "google-github-actions/auth@v2"
         with:
