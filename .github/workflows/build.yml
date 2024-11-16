@@ -29,3 +29,22 @@ jobs:
           echo "Secret values match, proceeding with the job..."
       - name: Compare secret matched
         run: echo "Secret values match, proceeding with the job..."
+
+  deploy-to-stage:
+    name: Deploy to Stage
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/stage'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        
+      - name: Compare secret value
+        run: |
+          if [[ "${GITHUB_REF}" == "refs/heads/main" ]]; then
+            echo "Secret values do not match. Exiting..."
+            exit 1
+          fi
+          echo "Secret values match, proceeding with the job..."
+      
+      - name: Deploy
+        run: echo "Deploying to the stage environment..."
